@@ -91,20 +91,28 @@ def hiveTweet(item):
     id = item.id.split("statuses/")[1]
     print item.title
     
+    
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
-  
-    sql = "select * from auth"
-    variables=([])
-    c.execute(sql,variables)
-  
-    for row in c:
-        rowid = row[0]
-        key1 = row[1]
-        key2 = row[2]
-        a = TwitterHiveMind(key1,key2)
-        id = int(id)
-        a.hiveRetweet(id)
+    
+    try:
+          
+        sql = "select * from auth"
+        variables=([])
+        c.execute(sql,variables)
+      
+        for row in c:
+            rowid = row[0]
+            key1 = row[1]
+            key2 = row[2]
+            a = TwitterHiveMind(key1,key2)
+            id = int(id)
+            a.hiveRetweet(id)
+    except:
+        pass
+    c.close()
+    c.close()
+        
     
     return
 
